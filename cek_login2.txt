@@ -1,0 +1,245 @@
+
+
+<!-- //VALIDASI 111111111111111============================================= -->
+
+<?php 
+
+// panggil koneksi db
+// include "koneksi.php";
+
+// // deklarasi variabel pass
+// $pass       = md5($_POST['password']);
+// $username   = mysqli_real_escape_string($koneksi, $_POST['username']);
+// $password   = mysqli_real_escape_string($koneksi, $pass);
+// $level      = mysqli_real_escape_string($koneksi, $_POST['level']);
+
+// // cek username terdaftar
+// $query      = "SELECT * FROM user WHERE username = '$username' AND level = '$level' ";
+// $cek_user   = mysqli_query($koneksi, $query);
+// $user_valid = mysqli_fetch_array($cek_user);
+
+// // uji jika username terdaftar
+// if ($user_valid) {
+//     // cek password yang sesuai
+//     if ($password == $user_valid['password']) {
+//         // jika pass sesuai buat session
+//         session_start();
+//         $_SESSION['username'] = $user_valid['username'];
+//         $_SESSION['nama_lengkap'] = $user_valid['nama_lengkap'];
+//         $_SESSION['level'] = $user_valid['level'];
+//         $_SESSION['area_tugas'] = $user_valid['area_tugas'];
+//         $_SESSION['kecamatan'] = $user_valid['kecamatan'];
+//         $id = $_SESSION['id'];
+
+//         // uji level user
+//         switch ($level) {
+//             case "fasilitator":
+//                 header('Location: dashboard.php');
+//                 break;
+//             // case "tksk":
+//             //     header('Location: laporan_layanan.php');
+//             //     break;
+//             // case "operator":
+//             //     header('Location: home_operator.php');
+//             //     break;
+//             // case "asn":
+//             //     header('Location: home_asn.php');
+//             //     break;
+//             default:
+//                 echo "<script>alert('Login Gagal. Level tidak dikenal.'); document.location='index.php'</script>";
+//                 break;
+//         }
+//     } else {
+//         echo "<script>alert('Login Gagal. Password tidak sesuai.'); document.location='index.php'</script>";
+//     }
+// } else {
+//     echo "<script>alert('Maaf, Login Gagal. Username tidak terdaftar.'); document.location='index.php'</script>";
+// }
+
+?>
+
+
+
+
+
+
+
+<!-- //VALIDASI 22222222=============================================2 -->
+
+
+<?php
+
+// // panggil koneksi db
+// include "koneksi.php";
+
+// // deklarasi variabel pass
+// $pass       = md5($_POST['password']);
+// $username   = mysqli_real_escape_string($koneksi, $_POST['username']);
+// $password   = mysqli_real_escape_string($koneksi, $pass);
+// $level      = mysqli_real_escape_string($koneksi, $_POST['level']);
+
+// // cek username terdaftar
+// $query      = "SELECT * FROM user WHERE username = '$username' AND level = '$level' ";
+// $cek_user   = mysqli_query($koneksi, $query);
+// $user_valid = mysqli_fetch_array($cek_user);
+
+// if ($user_valid) {
+//     // cek password yang sesuai
+//     if ($password == $user_valid['password']) {
+//         // tambahkan pengecekan session sebelum memulai session baru
+//         session_start();
+        
+//         // tambahkan pengecekan session berdasarkan nama_lengkap
+//         if (isset($_SESSION['username']) && $_SESSION['username'] == $user_valid['username']) {
+//             // jika session sudah ada dan sesuai dengan nama_lengkap yang sedang login, maka pengguna sudah login di perangkat lain
+//             echo "<script>alert('Maaf, Anda sudah login di perangkat lain.'); document.location='index.php'</script>";
+//             exit; // keluar dari skrip
+//         }
+        
+//         // buat session baru
+//         $_SESSION['username'] = $user_valid['username'];
+//         $_SESSION['nama_lengkap'] = $user_valid['nama_lengkap'];
+//         $_SESSION['level'] = $user_valid['level'];
+//         $_SESSION['area_tugas'] = $user_valid['area_tugas'];
+//         $_SESSION['kecamatan'] = $user_valid['kecamatan'];
+//         $_SESSION['id'] = $user_valid['id']; // pastikan $_SESSION['id'] diset sesuai dengan field yang sesuai dari database
+
+//         // lanjutkan dengan switch case seperti sebelumnya
+//         switch ($level) {
+//             case "fasilitator":
+//                 header('Location: dashboard.php');
+//                 break; 
+//             case "tksk":
+//                 header('Location: tksk.php');
+//                 break; 
+//             case "operator":
+//                 header('Location: operator.php');
+//                 break; 
+//             case "koordinator":
+//                 header('Location: koordinator.php');
+//                 break; 
+//             case "manajer":
+//                 header('Location: manajer.php');
+//                 break; 
+//             default:
+//                 echo "<script>alert('Login Gagal. Level tidak dikenal.'); document.location='index.php'</script>";
+//                 break;
+//         }
+//     } else {
+//         echo "<script>alert('Login Gagal. Password tidak sesuai.'); document.location='index.php'</script>";
+//     }
+// } else {
+//     echo "<script>alert('Maaf, Login Gagal. Username tidak terdaftar.'); document.location='index.php'</script>";
+// }
+
+?>
+
+
+
+
+
+
+
+
+
+
+<!-- //VALIDASI 3333333333============================================= -->
+
+<?php
+// deklarasi variabel pass
+// $pass       = md5($_POST['password']);
+// $username   = mysqli_real_escape_string($koneksi, $_POST['username']);
+// $password   = mysqli_real_escape_string($koneksi, $pass);
+// $level      = mysqli_real_escape_string($koneksi, $_POST['level']);
+
+// // cek username terdaftar
+// $query      = "SELECT * FROM user WHERE username = '$username' AND level = '$level'";
+// $cek_user   = mysqli_query($koneksi, $query);
+// $user_valid = mysqli_fetch_array($cek_user);
+
+// if ($user_valid) {
+//     // cek password yang sesuai
+//     if ($password == $user_valid['password']) {
+//         // tambahkan pengecekan session sebelum memulai session baru
+//         session_start();
+        
+//         // tambahkan pengecekan session berdasarkan username
+//         if (isset($_SESSION['username']) && $_SESSION['username'] == $user_valid['username']) {
+//             // jika session sudah ada dan sesuai dengan username yang sedang login, maka pengguna sudah login di perangkat lain
+//             echo "<script>alert('Maaf, Akun Anda sudah login di perangkat lain.'); document.location='index.php'</script>";
+//             exit; // keluar dari skrip
+//         }
+        
+//         // buat session baru
+//         $_SESSION['username'] = $user_valid['username'];
+//         $_SESSION['nama_lengkap'] = $user_valid['nama_lengkap'];
+//         $_SESSION['level'] = $user_valid['level'];
+//         $_SESSION['area_tugas'] = $user_valid['area_tugas'];
+//         $_SESSION['kecamatan'] = $user_valid['kecamatan'];
+//         $_SESSION['id'] = $user_valid['id']; // pastikan $_SESSION['id'] diset sesuai dengan field yang sesuai dari database
+//         $_SESSION['petugas'] = $user_valid['petugas']; // simpan petugas di session
+
+//         // cek level user dan arahkan ke halaman yang sesuai
+//         switch ($user_valid['level']) {
+//             case "dashboard":
+//                 header('Location: dashboard.php');
+//                 break;
+//             case "tksk":
+//                 header('Location: tksk.php');
+//                 break;
+//             case "operator":
+//                 // validasi berdasarkan operator 1,2,3,4
+//                 switch ($user_valid['petugas']) {
+//                     case 1:
+//                         header('Location: operator1.php');
+//                         break;
+//                     case 2:
+//                         header('Location: operator2.php');
+//                         break;
+//                     case 3:
+//                         header('Location: operator3.php');
+//                         break;
+//                     case 4:
+//                         header('Location: operator4.php');
+//                         break;
+//                     default:
+//                         echo "<script>alert('Login Gagal. Akun Operator tidak dikenal.'); document.location='index.php'</script>";
+//                         exit;
+//                 }
+//                 break;
+//             case "koordinator":
+//                 header('Location: koordinator.php');
+//                 break;
+//             case "manajer":
+//                 header('Location: manajer.php');
+//                 break;
+//             default:
+//                 echo "<script>alert('Login Gagal. Level tidak dikenal.'); document.location='index.php'</script>";
+//                 exit;
+//         }
+//         exit;
+//     } else {
+//         echo "<script>alert('Login Gagal. Password tidak sesuai.'); document.location='index.php'</script>";
+//     }
+// } else {
+//     echo "<script>alert('Maaf, Login Gagal. Username tidak terdaftar.'); document.location='index.php'</script>";
+// }
+?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

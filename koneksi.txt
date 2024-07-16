@@ -1,0 +1,17 @@
+<?php
+
+include "koneksi.php";
+
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('Anda harus login terlebih dahulu'); document.location='index.php'</script>";
+    exit;
+}
+
+$user_tabel = $_SESSION['user_tabel'];
+
+// Query untuk mengambil data dari tabel user yang sesuai
+$query = "SELECT * FROM $user_tabel ORDER BY id DESC";
+$tampil = mysqli_query($koneksi, $query);
+?>
+
+<!-- kode HTML Anda untuk menampilkan data dari tabel -->

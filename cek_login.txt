@@ -1,0 +1,114 @@
+<?php
+// Check if a session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// panggil koneksi db
+include "koneksi.php";
+
+// Validasi input
+if (!isset($_POST['username'], $_POST['password'], $_POST['level'])) {
+    echo "<script>alert('Form tidak lengkap.'); document.location='index.php'</script>";
+    exit;
+}
+
+$username = mysqli_real_escape_string($koneksi, $_POST['username']);
+$password = mysqli_real_escape_string($koneksi, $_POST['password']);
+$level    = mysqli_real_escape_string($koneksi, $_POST['level']);
+
+// cek username terdaftar
+$query    = "SELECT * FROM user WHERE username = '$username' AND level = '$level' ";
+$result   = mysqli_query($koneksi, $query);
+$user     = mysqli_fetch_assoc($result);
+
+if (!$user) {
+    echo "<script>alert('Maaf, Login Gagal. Username atau level tidak terdaftar.'); document.location='index.php'</script>";
+    exit;
+}
+
+// cek password yang sesuai
+if (!password_verify($_POST['password'], $user['password'])) {
+    echo "<script>alert('Login Gagal. Password tidak sesuai.'); document.location='index.php'</script>";
+    exit;
+}
+
+// tambahkan pengecekan session berdasarkan nama_lengkap
+if (isset($_SESSION['username']) && $_SESSION['username'] == $user['username']) {
+    echo "<script>alert('Maaf, Anda sudah login di perangkat lain.'); document.location='index.php'</script>";
+    exit;
+}
+
+// buat session baru
+$_SESSION['username']    = $user['username'];
+$_SESSION['nama_lengkap'] = $user['nama_lengkap'];
+$_SESSION['level']      = $user['level'];
+$_SESSION['area_tugas'] = $user['area_tugas'];
+$_SESSION['kecamatan']  = $user['kecamatan'];
+$_SESSION['id']         = $user['id']; // pastikan $_SESSION['id'] diset sesuai dengan field yang sesuai dari database
+
+// Validasi tabel berdasarkan login user untuk fasilitator
+if ($level == "fasilitator") {
+    $area_tugas = $user['area_tugas'];
+    // Definisikan tabel yang sesuai dengan area tugas
+    switch ($area_tugas) {
+        case "Kapias Pulau Buaya":
+            $tabel_user = "percobaan";
+            break;
+        case "area2":
+            $tabel_user = "tabel_fasilitator_area2";
+            break;
+        case "area3":
+            $tabel_user = "tabel_fasilitator_area3";
+            break;
+        default:
+            $tabel_user = "tabel_fasilitator_default"; // tabel default jika area tidak dikenal
+            break;
+    }
+
+    // Set tabel user dalam session
+    $_SESSION['user_tabel'] = $tabel_user;
+
+    header('Location: dashboard.php');
+    exit;
+} else {
+    // lanjutkan dengan switch case seperti sebelumnya
+    switch ($level) {
+        case "tksk":
+            header('Location: tksk.php');
+            exit;
+        case "operator":
+            header('Location: operator.php');
+            exit;
+        case "koordinator":
+            header('Location: koordinator.php');
+            exit;
+        case "manajer":
+            header('Location: manajer.php');
+            exit;
+        default:
+            echo "<script>alert('Login Gagal. Level tidak dikenal.'); document.location='index.php'</script>";
+            exit;
+    }
+}
+?>
+
+<?php
+// Check if a session is already started
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('Anda harus login terlebih dahulu'); document.location='index.php'</script>";
+    exit;
+}
+
+$user_tabel = $_SESSION['user_tabel'];
+
+// Query untuk mengambil data dari tabel user yang sesuai
+$query = "SELECT * FROM $user_tabel ORDER BY id DESC";
+$result = mysqli_query($koneksi, $query);
+?>
+
+<!-- kode HTML Anda untuk menampilkan data dari tabel -->
