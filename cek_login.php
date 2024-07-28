@@ -23,12 +23,13 @@ if ($user_valid) {
         // tambahkan pengecekan session sebelum memulai session baru
         session_start();
         
-        // tambahkan pengecekan session berdasarkan nama_lengkap
-        if (isset($_SESSION['username']) && $_SESSION['username'] == $user_valid['username']) {
-            // jika session sudah ada dan sesuai dengan nama_lengkap yang sedang login, maka pengguna sudah login di perangkat lain
-            echo "<script>alert('Maaf, Anda sudah login di perangkat lain.'); document.location='index.php'</script>";
-            exit; // keluar dari skrip
-        }
+        if ((isset($_SESSION['username']) && $_SESSION['username'] == $user_valid['username']) &&
+        (isset($_SESSION['id']) && $_SESSION['id'] == $user_valid['id'])) {
+        // jika session sudah ada dan sesuai dengan nama_lengkap yang sedang login, maka pengguna sudah login di perangkat lain
+        echo "<script>alert('Maaf, Anda sudah login di perangkat lain.'); document.location='index.php'</script>";
+        exit; // keluar dari skrip
+    }
+    
         
         // buat session baru
         $_SESSION['username'] = $user_valid['username'];

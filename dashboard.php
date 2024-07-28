@@ -1,26 +1,31 @@
-<?php 
+<?php
+  include "layout/heade.php";
 
+session_start();
+$session_id = session_id(); // Menyimpan session ID
+$koneksi = new mysqli("localhost", "username", "", "db_latihan");
 
+// Pastikan koneksi berhasil
+if ($koneksi->connect_error) {
+    die("Koneksi gagal: " . $koneksi->connect_error);
+}
 
-    include "layout/header.php";
-    include "koneksi.php";
+// Ambil data dari tabel laporan fasilitator
+$tampil = mysqli_query($koneksi, "SELECT * FROM percobaan WHERE session_id = '$session_id' ORDER BY id DESC");
+$total_data = mysqli_num_rows($tampil); // Hitung jumlah data
 
-    //ambil data dari tabel laporan fasilitator
-    $tampil = mysqli_query($koneksi, "SELECT * FROM percobaan  ORDER BY id DESC"); //where session_id disamping percobaan
-    $total_data = mysqli_num_rows($tampil); // Hitung jumlah data
+// Ambil data dari pelayanan
+$tampil = mysqli_query($koneksi, "SELECT * FROM pelayanan WHERE session_id = '$session_id' ORDER BY id DESC");
+$total_pelayanan = mysqli_num_rows($tampil);
 
-    //ambil data dari pelayanan
-    $tampil = mysqli_query($koneksi, "SELECT * FROM pelayanan ORDER BY id DESC");
-    $total_pelayanan = mysqli_num_rows($tampil);
+// Ambil data dari bbl
+$tampil = mysqli_query($koneksi, "SELECT * FROM bbl WHERE session_id = '$session_id' ORDER BY id DESC");
+$total_bbl = mysqli_num_rows($tampil);
 
-     //ambil data dari bbl
-     $tampil = mysqli_query($koneksi, "SELECT * FROM bbl ORDER BY id DESC");
-     $total_bbl = mysqli_num_rows($tampil);
+// Ambil data dari tambahan
+$tampil = mysqli_query($koneksi, "SELECT * FROM tambahan WHERE session_id = '$session_id' ORDER BY id DESC");
+$total_tambahan = mysqli_num_rows($tampil);
 
-      //ambil data dari tambahan
-      $tampil = mysqli_query($koneksi, "SELECT * FROM tambahan ORDER BY id DESC");
-      $total_tambahan = mysqli_num_rows($tampil);
-   
 ?>
 
 

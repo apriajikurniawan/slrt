@@ -54,7 +54,7 @@ include "layout/header.php";
                     <?php 
                         //ambil data
                         $no = 1;
-                        $tampil = mysqli_query($koneksi, "SELECT * FROM percobaan ORDER BY id DESC");
+                        $tampil = mysqli_query($koneksi, "SELECT * FROM percobaan WHERE session_id = '$session_id' ORDER BY id DESC");
                         while ($data = mysqli_fetch_array($tampil)) {
                     ?>
                     <tr>
