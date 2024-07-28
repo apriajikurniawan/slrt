@@ -74,7 +74,7 @@
                             <tbody>
                                 <?php 
                                 $no = 1;
-                                $tampil = mysqli_query($koneksi, "SELECT * FROM percobaan_apriaji ORDER BY id DESC");
+                                $tampil = mysqli_query($koneksi, "SELECT * FROM percobaan ORDER BY id DESC");
                                 while ($data = mysqli_fetch_array($tampil)) {
                                 ?>
                                 <tr>

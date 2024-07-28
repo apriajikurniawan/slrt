@@ -26,7 +26,7 @@ include "layout/header.php";
                 <div class="container my-3 d-none d-md-block">
                     <div class="d-flex justify-content-start">
                         <a href="dashboard.php?page=dashboard" class="btn btn-danger mb-3 me-2">Kembali</a>
-                        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modaltambah">
+                        <button type="button" class="btn btn-success mb-3" data-bs-toggle="modal" data-bs-target="#modaltambahan">
                             Tambahkan
                         </button>
                     </div>
@@ -209,7 +209,7 @@ include "layout/header.php";
                                
                                         
                                 <div class="input-field form-group">
-                                    <input type="text" required name="keterangan3">
+                                    <input type="text" required name="keterangan4">
                                     <label>KETERANGAN</label>
                                 </div><br>
                             
